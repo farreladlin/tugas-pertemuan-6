@@ -1,4 +1,4 @@
-program DeretBilangan;
+program soal5;
 uses crt;
 
 var
@@ -42,44 +42,42 @@ begin
     Deret4 := k * (k + 1);
 end;
 
+function HitungSuku(jenis, k : integer) : longint;
+begin
+    case jenis of
+        1 : HitungSuku := JumlahDuaSuku(k);
+        2 : HitungSuku := PangkatDua(k);
+        3 : HitungSuku := Kuadrat(k);
+        4 : HitungSuku := Deret4(k);
+    end;
+end;
+
+procedure CetakBaris(jenis, banyak : integer);
+var
+    i : integer;          
+begin
+    for i := 1 to banyak do
+    begin
+        write(HitungSuku(jenis, i));    //cetak suku ke-i
+        if i < banyak then
+        write(', ');                  //koma hanya di antara suku
+    end;
+    writeln;                          //pindah baris 
+end;
+
 { ===== Program utama ===== }
 begin
-    clrscr;
-    write('Input : ');
-    readln(n);              
-    writeln('Output:');
+clrscr;
+  write('Input : ');
+  readln(n);                        
+  writeln('Output:');
 
-    //Deret a: jumlah dua suku sebelumnya
-    for i := 1 to n do
-    begin
-        write(JumlahDuaSuku(i));      //panggil fungsi untuk suku ke-i
-        if i < n then write(', ');    //koma hanya di antara suku, bukan setelah suku terakhir
-    end;
-    writeln;                       
+  CetakBaris(1, n);                 //deret a
+  CetakBaris(2, n);                 //deret b
+  CetakBaris(3, n);                 //deret c
+  CetakBaris(4, n);                 //deret d
 
-    //Deret b: pangkat 2 
-    for i := 1 to n do
-    begin
-        write(PangkatDua(i));
-        if i < n then write(', ');
-    end;
-    writeln;
-
-    //Deret c: kuadrat
-    for i := 1 to n do
-    begin
-        write(Kuadrat(i));
-        if i < n then write(', ');
-    end;
-    writeln;
-
-    //Deret d: k x (k+1)
-    for i := 1 to n do
-    begin
-        write(Deret4(i));
-        if i < n then write(', ');
-    end;
-    writeln;
-
-    readln;                  
+  readln;                           
 end.
+
+    
