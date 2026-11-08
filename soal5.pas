@@ -79,5 +79,3 @@ clrscr;
 
   readln;                           
 end.
-
-    
